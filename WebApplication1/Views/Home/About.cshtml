@@ -1,5 +1,10 @@
 ﻿@{
     ViewData["Title"] = "About Page";
+    var Name = "Miguel Carlo G. Fajardo";
+    var Email = "miguelcarlo.fajardo.cics@ust.edu.ph";
+    var Role = "Student";
+    var Number = "09124532684";
+    var Location = "Pasig City";
 
 }
 
@@ -23,7 +28,7 @@
         </h2>
 
         <p>
-            Miguel Carlo G. Fajardo
+            Hi I'm @Name
         </p>
 
         <h2>
@@ -31,7 +36,7 @@
         </h2>
 
         <p>
-            miguelcarlo.fajardo.cics@ust.edu.ph
+            My email address is @Email
         </p>
 
         <h2>
@@ -39,7 +44,7 @@
         </h2>
 
         <p>
-            Student
+            I'm a @Role
         </p>
 
         <h2>
@@ -47,7 +52,7 @@
         </h2>
 
         <p>
-            09124532684
+            You can contact me here: @Number
         </p>
 
         <h2>
@@ -55,10 +60,17 @@
         </h2>
 
         <p>
-            Pasig City
+            I am currently located at @Location
         </p>
 
 
     </div>
+
+    <div class="col-md-6">
+    <center>
+        <img src="~/css/picture.jpg" width="70%" style="border-radius: 10px;" alt="Picture">
+    </center>
+    </div>
+
 </body>
 </html>
