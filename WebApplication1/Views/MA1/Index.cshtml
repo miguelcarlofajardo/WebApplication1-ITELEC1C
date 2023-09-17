@@ -1,0 +1,144 @@
+﻿@model IEnumerable<MA1>;
+
+
+<div>Employee</div>
+
+@{
+    var SalaryPerHour = 200 + 500;
+    var DailySalary = SalaryPerHour * 8;
+    var SalaryPerMonth = DailySalary * 30;
+    var currentDate = DateTime.Now;
+    var birthday = new DateTime(1995, 12 , 25);
+    var age = currentDate.Year - birthday.Year - (currentDate.Date < birthday.Date ? 1 : 0);
+    var Email = "juandelacruz@gmail.com";
+    var atIndex = Email.LastIndexOf('@');
+    var EmailDomain = atIndex >= 0 ? Email.Substring(atIndex + 1) : string.Empty;
+    var Index = Email.IndexOf('@');
+    var EmailUsername = Index >= 0 ? Email.Substring(0, atIndex) : Email;
+}
+
+<h1>I'm Juan Dela Cruz and I'm @age yrs. old</h1>
+<h2>email: @Email</h2>
+<h2>domain: @EmailDomain</h2>
+<h2>username: @EmailUsername</h2>
+<table class="table table-dark">
+
+    <tr>
+        <th colspan="6">Employee</th>
+    </tr>
+
+    @foreach (var ma1 in Model)
+    {
+        <tr>
+            <tr></tr>
+            <td>Name: </td>
+            <td>@ma1.FirstName @ma1.LastName</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>@Email</td>
+        </tr>
+        <tr>
+            <td>status:</td>
+            <td>
+                @if (ma1.IsTenured == true)
+                {
+                    <p>Permanent</p>
+                }
+                else
+                {
+                    <p>Probationary</p>
+                }
+
+            </td>
+        </tr>
+        <tr>
+            <td>Daily Salary</td>
+            <td>$@DailySalary</td>
+        </tr>
+        <tr>
+            <td>Monthly Salary</td>
+            <td>$@SalaryPerMonth</td>
+        </tr>
+    }
+</table>
+
+
+
+<div>Student Grade</div>
+
+@{
+    var Name = "Juan Dela Cruz";
+    var PrelimGrade = 88;
+    var FinalGrade = 86;
+    var SemGrade = (PrelimGrade + FinalGrade) / 2;
+    var TransmutedGrade = 1.25;
+
+    if (SemGrade < 75)
+    {
+        TransmutedGrade = 5.00;
+    }
+    else if (SemGrade >= 75 && SemGrade <= 78)
+    {
+        TransmutedGrade = 3.00;
+    }
+    else if (SemGrade >= 79 && SemGrade <= 81)
+    {
+        TransmutedGrade = 2.75;
+    }
+    else if (SemGrade >= 82 && SemGrade <= 83)
+    {
+        TransmutedGrade = 2.50;
+    }
+    else if (SemGrade >= 84 && SemGrade <= 86)
+    {
+        TransmutedGrade = 2.25;
+    }
+    else if (SemGrade >= 87 && SemGrade <= 88)
+    {
+        TransmutedGrade = 2.00;
+    }
+    else if (SemGrade >= 89 && SemGrade <= 91)
+    {
+        TransmutedGrade = 1.75;
+    }
+    else if (SemGrade >= 92 && SemGrade <= 93)
+    {
+        TransmutedGrade = 1.50;
+    }
+    else if (SemGrade >= 94 && SemGrade <= 95)
+    {
+        TransmutedGrade = 1.25;
+    }
+    else if (SemGrade >= 96 && SemGrade <= 100)
+    {
+        TransmutedGrade = 1.00;
+    }
+}
+
+<table class="table table-dark">
+
+    <tr>
+        <th colspan="6">Student Grade</th>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td>@Name </td>
+    </tr>
+    <tr>
+        <td>Prelim Grade: </td>
+        <td>@PrelimGrade </td>
+    </tr>
+    <tr>
+        <td>Final Grade: </td>
+        <td>@FinalGrade</td>
+    </tr>
+    <tr>
+        <td>Semestral Grade:    </td>
+        <td>@SemGrade </td>
+    </tr>
+    <tr>
+        <td>Transmuted Grade:   </td>
+        <td>@TransmutedGrade </td>
+    </tr>
+</table>

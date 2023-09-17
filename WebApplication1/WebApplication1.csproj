@@ -10,4 +10,9 @@
     <Compile Remove="Views\Home\About.cshtml.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Home\NewFolder\" />
+    <Folder Include="Views\NewFolder\" />
+  </ItemGroup>
+
 </Project>
