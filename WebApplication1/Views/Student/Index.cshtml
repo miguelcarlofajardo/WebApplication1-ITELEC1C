@@ -2,11 +2,12 @@
 
 <div>Student List</div>
 
+<a href="@Url.Action("AddStudent")" class="btn btn-primary mb-3" >Add Student</a>
 
 <table class="table table-dark">
 
     <tr>
-        <th colspan="6">Student</th>
+        <th colspan="7">Student</th>
     </tr>
 
     <tr>
@@ -16,6 +17,7 @@
         <td>Email</td>
         <td>GPA</td>
         <td>Details</td>
+        <td>Edit</td>
 
 
     </tr>
@@ -28,6 +30,8 @@
             <td>@student.Email</td>
             <td>@student.GPA</td>
             <td><a asp-action="ShowDetail" asp-route-id="@student.Id">Show Details</a></td>
+            <td><a asp-action="Edit" asp-route-id="@student.Id">Edit</a></td>
+
 
         </tr>
     }
