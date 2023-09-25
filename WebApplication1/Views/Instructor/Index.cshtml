@@ -7,7 +7,7 @@
 <table class="table table-dark">
 
     <tr>
-        <th colspan="7">Instructor</th>
+        <th colspan="8">Instructor</th>
     </tr>
 
     <tr>
@@ -17,6 +17,7 @@
         <td>Tenured</td>
         <td>Details</td>
         <td>Edit</td>
+        <td>Delete</td>
 
     </tr>
     @foreach (var instructor in Model)
@@ -36,6 +37,7 @@
             </td>
             <td><a asp-action="ShowDetail" asp-route-id="@instructor.Id">Show Details</a></td>
             <td><a asp-action="Edit" asp-route-id="@instructor.Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@instructor.Id">Delete</a></td>
         </tr>
     }
 </table>
