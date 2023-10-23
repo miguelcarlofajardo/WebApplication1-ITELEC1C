@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.Services;
 
@@ -7,22 +8,22 @@ namespace WebApplication1.Controllers
 {
     public class InstructorController : Controller
     {
-        private readonly IMyFakeDataService _fakeData;
-        public InstructorController(IMyFakeDataService fakeData)
+        private readonly AppDbContext _dbContext;
+        public InstructorController(AppDbContext dbContext)
         {
-            _fakeData = fakeData;
+            _dbContext = dbContext;
 
         }
         public IActionResult Index()
         {
 
-            return View(_fakeData.InstructorList);
+            return View(_dbContext.Instructors);
         }
 
         public IActionResult ShowDetail(int id)
         {
             //Search for the instructor whose id matches the given id
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)//was an instructor found?
                 return View(instructor);
@@ -39,14 +40,15 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
-            _fakeData.InstructorList.Add(newInstructor);
-            return View("Index", _fakeData.InstructorList);
+            _dbContext.Instructors.Add(newInstructor);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)
                 return View(instructor);
@@ -56,7 +58,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Edit(Instructor instructorChange)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == instructorChange.Id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == instructorChange.Id);
 
             if (instructor != null)
             {
@@ -66,14 +68,16 @@ namespace WebApplication1.Controllers
                 instructor.IsTenured = instructorChange.IsTenured;
                 instructor.Rank = instructorChange.Rank;
                 instructor.HiringDate = instructorChange.HiringDate;
+                _dbContext.SaveChanges();
+
             }
-            return View("Index", _fakeData.InstructorList);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)
                 return View(instructor);
@@ -84,11 +88,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Delete(Instructor instructorRemove)
         {
-            Instructor? instructor = _fakeData.InstructorList.FirstOrDefault(st => st.Id == instructorRemove.Id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == instructorRemove.Id);
             if (instructor != null)
             {
-                _fakeData.InstructorList.Remove(instructor);
-                return View("Index", _fakeData.InstructorList);
+                _dbContext.Instructors.Remove(instructor);
+                _dbContext.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View("Index");
