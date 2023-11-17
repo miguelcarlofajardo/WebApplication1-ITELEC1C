@@ -63,8 +63,8 @@ namespace WebApplication1.Controllers
             {
                 User newUser = new User();
                 newUser.UserName = userEnteredData.UserName;
-                newUser.FirstName = userEnteredData.FirstName;
-                newUser.LastName = userEnteredData.LastName;
+                newUser.Firstname = userEnteredData.FirstName;
+                newUser.Lastname = userEnteredData.LastName;
                 newUser.Email = userEnteredData.Email;
                 newUser.PhoneNumber = userEnteredData.Phone;
 
