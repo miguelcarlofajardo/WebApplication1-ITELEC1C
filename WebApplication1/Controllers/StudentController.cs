@@ -39,8 +39,11 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student newStudent)
         {
-            _dbContext.Students.Add(newStudent);
-            _dbContext.SaveChanges();
+            if (!ModelState.IsValid)
+                return View();
+
+            _dbContext.Add(newStudent);
+            //_dbContext.SaveChanges(); project wont save the new information
             return RedirectToAction("Index");
         }
 

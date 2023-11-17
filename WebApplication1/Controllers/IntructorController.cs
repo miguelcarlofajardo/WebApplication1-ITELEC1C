@@ -40,8 +40,11 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
-            _dbContext.Instructors.Add(newInstructor);
-            _dbContext.SaveChanges();
+            if (!ModelState.IsValid)
+                return View();
+       
+            _dbContext.Add(newInstructor);
+            //_dbContext.SaveChanges(); project wont save the new information
             return RedirectToAction("Index");
         }
 
